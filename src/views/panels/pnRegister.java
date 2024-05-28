@@ -4,21 +4,13 @@
 package views.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -28,15 +20,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import ATMSimulation.Main;
 import bases.variables;
-import daos.UserDao;
-import models.User;
 import utils.toast;
 import utils.validator;
-import views.authenView;
-import views.mainView;
 
 /**
  * @author zoohuy

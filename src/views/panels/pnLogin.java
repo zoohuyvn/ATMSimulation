@@ -6,35 +6,21 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.HttpURLConnection;
 import java.net.Socket;
-import java.net.URL;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-
-import org.mindrot.jbcrypt.BCrypt;
-
 import ATMSimulation.Main;
 import bases.variables;
-import daos.UserDao;
 import models.User;
 import utils.toast;
 import utils.validator;
-import views.authenView;
-import views.mainView;
 
 /**
  * @author zoohuy
@@ -100,13 +86,10 @@ public class pnLogin extends JPanel {
 	}
 	
 	public User loginHandle() {
-//		usernameTF.setText("zoohuy");
-		passwordTF.setText("1");
-		twoFATF.setText("1");
 		User loginUser = null;
 		if (!validator.validateBlankLength(usernameTF)) toast.showMsg("Warning", "Username can't be blank and min 6 characters", "warning");
-//		else if (!validator.validateBlankLength(passwordTF)) toast.showMsg("Warning", "Password can't be blank and min 6 characters", "warning");
-//		else if (!validator.validatePin(twoFATF)) toast.showMsg("Warning", "2FA code can't be blank and must be 6 number", "warning");
+		else if (!validator.validateBlankLength(passwordTF)) toast.showMsg("Warning", "Password can't be blank and min 6 characters", "warning");
+		else if (!validator.validatePin(twoFATF)) toast.showMsg("Warning", "2FA code can't be blank and must be 6 number", "warning");
 		else {
 			User userFound = null;
 			boolean validatePassword = false;
@@ -125,8 +108,8 @@ public class pnLogin extends JPanel {
 				e.printStackTrace();
 			}
 			if (userFound == null) toast.showMsg("Warning", "Username not found", "warning");
-//			else if (!validatePassword) toast.showMsg("Warning", "Wrong password", "warning");
-//			else if (!validate2FACode) toast.showMsg("Warning", "Wrong 2FA", "warning");
+			else if (!validatePassword) toast.showMsg("Warning", "Wrong password", "warning");
+			else if (!validate2FACode) toast.showMsg("Warning", "Wrong 2FA", "warning");
 			else loginUser = userFound;
 		}
 		return loginUser;

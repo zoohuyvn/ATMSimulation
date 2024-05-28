@@ -3,15 +3,9 @@
  */
 package views;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import ATMSimulation.Main;
 import models.User;
-import server.server;
-import views.panels.pnUITop;
 
 /**
  * @author zoohuy

@@ -2,16 +2,10 @@
  * 
  */
 package views;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import ATMSimulation.Main;
 import controllers.authenController;
-import models.User;
 import views.panels.pnLogin;
 import views.panels.pnRegister;
 

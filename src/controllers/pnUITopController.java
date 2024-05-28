@@ -4,10 +4,7 @@
 package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import ATMSimulation.Main;
-import views.uiView;
-import views.mainView;
 import views.panels.pnUITop;
 
 /**

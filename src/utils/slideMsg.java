@@ -113,7 +113,6 @@ public class slideMsg extends JFrame {
                 try {
                     slideMsg toastFrame = new slideMsg(owner, toastText);
                     toastFrame.fadeIn();
-                    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                     int oneThirdScreenHeight = (int) (owner.getLocation().getY() + 80);
                     toastFrame.slideDown(oneThirdScreenHeight);
                     Thread.sleep(waitSec * 1000);

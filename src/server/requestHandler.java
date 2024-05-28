@@ -4,39 +4,19 @@
 package server;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
-import org.java_websocket.WebSocket;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-
-import org.java_websocket.handshake.ClientHandshake;
-import org.java_websocket.server.WebSocketServer;
 import org.mindrot.jbcrypt.BCrypt;
-
-import ATMSimulation.Main;
 import daos.StatisticalDao;
 import daos.TransactionHistoryDao;
 import daos.UserDao;
 import models.TransactionHistory;
 import models.User;
 import utils.timestamp;
-import views.mainView;
 
 /**
  * @author zoohuy

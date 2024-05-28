@@ -2,11 +2,9 @@
  * 
  */
 package daos;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import org.mindrot.jbcrypt.BCrypt;
 import connection.dbConnector;
 import models.User;

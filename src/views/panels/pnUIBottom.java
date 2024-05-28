@@ -10,56 +10,36 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.EventObject;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-
-import org.java_websocket.client.WebSocketClient;
-import org.java_websocket.handshake.ServerHandshake;
-
 import ATMSimulation.Main;
 import bases.variables;
 import controllers.pnUIBottomController;
-import daos.StatisticalDao;
-import daos.TransactionHistoryDao;
-import daos.UserDao;
 import models.TransactionHistory;
 import models.User;
 import utils.exportPDF;
 import utils.exportToExcel;
 import utils.generateColumnChart;
 import utils.resizeTableColumnWidth;
-import utils.slideMsg;
-import utils.timestamp;
 import utils.toast;
 import utils.validator;
-import views.mainView;
 
 /**
  * @author zoohuy

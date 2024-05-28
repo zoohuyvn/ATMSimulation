@@ -16,9 +16,6 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
-
 import bases.variables;
 
 /**

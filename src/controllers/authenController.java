@@ -4,16 +4,11 @@
 package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.SwingUtilities;
-
 import ATMSimulation.Main;
 import models.User;
 import views.authenView;
-import views.mainView;
 import views.panels.pnLogin;
 import views.panels.pnRegister;
-import views.panels.pnUITop;
 
 /**
  * @author zoohuy

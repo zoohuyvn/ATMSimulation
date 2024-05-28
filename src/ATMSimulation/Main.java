@@ -5,26 +5,14 @@ package ATMSimulation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import bases.variables;
-import models.User;
-import server.server;
-import views.authenView;
 import views.mainView;
-import views.uiView;
-import views.panels.pnUITop;
 
 /**
  * @author zoohuy
