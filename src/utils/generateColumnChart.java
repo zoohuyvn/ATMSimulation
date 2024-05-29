@@ -53,9 +53,9 @@ public class generateColumnChart extends JPanel {
         for (int i = 0; i < count; ++i) {
         	String[] arr = (String[]) dataChart.get(i);
         	String date = arr[0];
-        	double rechargeSum = Double.parseDouble((arr[1].isEmpty()) ? "0" : arr[1]);
-            double receiveSum = Double.parseDouble((arr[3].isEmpty()) ? "0" : arr[3]);
-            double transferSum = Double.parseDouble((arr[2].isEmpty()) ? "0" : arr[2]);
+        	double rechargeSum = Double.parseDouble(arr[1]);
+            double receiveSum = Double.parseDouble(arr[3]);
+            double transferSum = Double.parseDouble(arr[2]);
             dataset.addValue(rechargeSum, "Recharge", date);
             dataset.addValue(transferSum, "Transfer", date);
             dataset.addValue(receiveSum, "Receive", date);

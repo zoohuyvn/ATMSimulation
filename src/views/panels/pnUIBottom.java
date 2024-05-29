@@ -238,7 +238,8 @@ public class pnUIBottom extends JPanel {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
-			if (!validator.validateBlankLength(receiverUsernameTF)) toast.showMsg("Warning", "Username can't be blank and min 6 characters", "warning");
+			if (!validator.validateBlankLength(receiverUsernameTF)) toast.showMsg("Warning", "Receive username can't be blank and min 6 characters", "warning");
+			else if (receiverUsername.equals(transferUsername)) toast.showMsg("Warning", "Can't be transfer for youself", "warning");
 			else if (!validator.validateBlank(amoutnTF) || !validator.validateBalance(amoutnTF)) toast.showMsg("Warning", "Amount can't be blank and must be number", "warning");
 			else if (amount == 0) toast.showMsg("Error", "Amount can't be 0", "error");
 			else if (amount > transferUser.getBalance()) toast.showMsg("Error", "Insufficient balance", "error");
@@ -534,7 +535,9 @@ public class pnUIBottom extends JPanel {
 					ArrayList<String[]> dataChart = (ArrayList<String[]>) inObj.readObject();
 					SwingUtilities.invokeLater(() -> {
 						double totalTransaction = 0;
-						for (double[] arr : dataDSHB) { totalTransaction += arr[0]; }
+						for (double[] arr : dataDSHB) {
+							totalTransaction += arr[0];
+						}
 						DSHBLB1.setText("<html><p style='text-align: center; font-size: 16px; margin-top: 4px'>Total transactions<br>"
 								+ "<b style='color: "+variables.primaryColor+"'>"+
 								(totalTransaction+"").substring(0, (totalTransaction+"").indexOf("."))

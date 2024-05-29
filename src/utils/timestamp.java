@@ -22,4 +22,16 @@ public class timestamp {
 		String time = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss").format(new Date(millis));
 		return time;
 	}
+	
+	public static String getDayAfter(int dayAfter) {
+		long millis = System.currentTimeMillis() - (86400*1000*dayAfter);
+		String time = new SimpleDateFormat("dd/MM").format(new Date(millis));
+		return time;
+	}
+	
+	public static String getMonthTime() {
+		long millis = System.currentTimeMillis();
+		String time = new SimpleDateFormat("MM/yyyy").format(new Date(millis));
+		return time;
+	}
 }
