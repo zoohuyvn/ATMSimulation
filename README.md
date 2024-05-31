@@ -2,7 +2,7 @@
 Final project in Java and Base project I for ATM simulation.
 
 ## 📍 Features
-- Multithreading
+- Multithreading (transaction management)
 - Login, register (authentication with Google 2FA)
 - Recharge, transfer money
 - Real time transaction histories search
