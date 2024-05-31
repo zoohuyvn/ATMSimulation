@@ -19,9 +19,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
+import org.apache.poi.hssf.record.PrecisionRecord;
+
 import ATMSimulation.Main;
 import bases.variables;
 import controllers.pnUITopController;
+import utils.slideMsg;
 
 /**
  * @author zoohuy
@@ -34,7 +38,7 @@ public class pnUITop extends JPanel {
 	
 	JLabel logoLB = new JLabel("<html><p style='margin-bottom: 200px;'></p></html>"),
 			welcomeLB = new JLabel(), userLB = new JLabel(), subBalanceLB;
-	JButton logoutBT = new JButton("Exit"), balanceBT = new JButton();
+	JButton logoutBT = new JButton("Exit"), balanceBT = new JButton("-");
 	String username, fullname, time = "";
 	public boolean isEyeHide = false;
 	
@@ -90,7 +94,15 @@ public class pnUITop extends JPanel {
         		while (Main.getMainViewInstance().user != null) {
         			String[] parts = inObj.readUTF().split("\\|");
         			String datetime = parts[0];
-        			String balance = parts[1];
+        			String oldBalance = balanceBT.getText();
+        			String balance = " " + parts[1] + " $";
+        			if (!oldBalance.equals(balance) && !oldBalance.equals("-") && !oldBalance.equals(" *** $")) {
+        				double oldBalanceD = Double.parseDouble(oldBalance.substring(1, oldBalance.indexOf("$") - 1));
+        				double balanceD = Double.parseDouble(balance.substring(1, balance.indexOf("$") - 1));
+        				double fluctuation = Math.round((balanceD - oldBalanceD) * 100.0) / 100.0;
+        				String fluctuationStr = fluctuation > 0 ? "+"+fluctuation : ""+fluctuation;
+        				slideMsg.create(Main.getMain(), "Balance fluctuation: " + fluctuationStr + " $", 3);
+        			}
         			int hour = Integer.parseInt(datetime.substring(0, 2));
         			if (hour >= 1 && hour <= 10) time = "morning";
         			else if (hour <= 12) time = "noon";

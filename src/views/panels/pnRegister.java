@@ -37,7 +37,8 @@ public class pnRegister extends JPanel {
 	JPanel pnMain = new JPanel();
 	JLabel usernameLB, passwordLB, nameLB, rpPasswordLB, pinLB;
 	public static JLabel twoFALB = new JLabel();
-	public static JTextField usernameTF, fullnameTF, pinTF;
+	public static JTextField usernameTF, fullnameTF;
+	public static JPasswordField pinTF;
 	public static JPasswordField passwordTF, rpPasswordTF;
 	public static JButton registerBT, loginBT;
 	
@@ -69,7 +70,7 @@ public class pnRegister extends JPanel {
 	    fullnameTF = new JTextField();
 	    fullnameTF.setMargin(new Insets(4, 8, 4, 8));
 	    pinLB = new JLabel("PIN");
-	    pinTF = new JTextField();
+	    pinTF = new JPasswordField();
 	    pinTF.setMargin(new Insets(4, 8, 4, 8));
 	    registerBT = new JButton("REGISTER");
 	    registerBT.setForeground(Color.white);

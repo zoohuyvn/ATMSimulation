@@ -33,9 +33,9 @@ public class validator {
 	    return true;
 	}
 	
-	public static boolean validatePin(JTextField tf) {
+	public static boolean validatePin(JPasswordField pf) {
 		pattern = Pattern.compile(pinRGX);
-	    matcher = pattern.matcher(tf.getText());
+	    matcher = pattern.matcher(pf.getText());
 	    if (!matcher.find()) return false;
 	    return true;
 	}

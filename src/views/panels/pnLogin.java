@@ -33,8 +33,8 @@ public class pnLogin extends JPanel {
 	JPanel pnEast = new JPanel();
 	JPanel pnMain = new JPanel();
 	JLabel usernameLB, passwordLB, twoFALB;
-	static JTextField usernameTF, twoFATF;
-	static JPasswordField passwordTF;
+	static JTextField usernameTF;
+	static JPasswordField passwordTF, twoFATF;
 	public static JButton registerBT, loginBT;
 	
 	public pnLogin() {
@@ -59,7 +59,7 @@ public class pnLogin extends JPanel {
 	    passwordTF = new JPasswordField();
 	    passwordTF.setMargin(new Insets(4, 8, 4, 8));
 	    twoFALB = new JLabel("2FA code");
-	    twoFATF = new JTextField();
+	    twoFATF = new JPasswordField();
 	    twoFATF.setMargin(new Insets(4, 8, 4, 8));
 	    loginBT = new JButton("LOGIN");
 	    loginBT.setForeground(Color.white);

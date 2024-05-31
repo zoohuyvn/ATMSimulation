@@ -22,6 +22,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -148,7 +149,8 @@ public class pnUIBottom extends JPanel {
 		JPanel pnMain = new JPanel();
 		pnMain.setLayout(new GridLayout(5, 1, 0, 16));
 		JLabel amountLB = new JLabel("Amount"), pinLB = new JLabel("PIN");
-		JTextField amoutnTF = new JTextField(), pinTF = new JTextField();
+		JTextField amoutnTF = new JTextField();
+		JPasswordField pinTF = new JPasswordField();
 		JButton rechargeBT = new JButton("RECHARGE");
 		amoutnTF.setMargin(new Insets(4, 8, 4, 8));
 		pinTF.setMargin(new Insets(4, 8, 4, 8));
@@ -166,6 +168,7 @@ public class pnUIBottom extends JPanel {
 		rechargeBT.addActionListener(e -> {
 			String pin = pinTF.getText().trim();
 			if (!validator.validateBlank(amoutnTF) || !validator.validateBalance(amoutnTF)) toast.showMsg("Warning", "Amount can't be blank and must be number", "warning");
+			else if (Double.parseDouble(amoutnTF.getText().trim()) == 0) toast.showMsg("Error", "Amount can't be 0", "error");
 			else if (!validator.validatePin(pinTF)) toast.showMsg("Warning", "PIN can't be blank and must be 6 number", "warning");
 			else if (!pin.equals(Main.getMainViewInstance().user.getPin())) toast.showMsg("Error", "Wrong PIN", "error");
 			else {
@@ -191,20 +194,17 @@ public class pnUIBottom extends JPanel {
 	
 	public void transferHandle() {
 		JPanel pnMain = new JPanel();
-		pnMain.setLayout(new GridLayout(9, 1, 0, 16));
+		pnMain.setLayout(new GridLayout(7, 1, 0, 16));
 		JLabel receiverUsernameLB = new JLabel("Receiver username"),
 			   amountLB = new JLabel("Amount"),
-			   pinLB = new JLabel("PIN"),
-			   retypePinLB = new JLabel("Retype PIN");
+			   pinLB = new JLabel("PIN");
 		JTextField receiverUsernameTF = new JTextField(),
-				   amoutnTF = new JTextField(),
-				   pinTF = new JTextField(),
-				   retypePinTF = new JTextField();
+				   amoutnTF = new JTextField();
+		JPasswordField pinTF = new JPasswordField();
 		JButton transferBT = new JButton("TRANSFER");
 		receiverUsernameTF.setMargin(new Insets(4, 8, 4, 8));
 		amoutnTF.setMargin(new Insets(4, 8, 4, 8));
 		pinTF.setMargin(new Insets(4, 8, 4, 8));
-		retypePinTF.setMargin(new Insets(4, 8, 4, 8));
 		transferBT.setBackground(Color.decode(variables.primaryColorLight));
 		transferBT.setOpaque(true);
 		transferBT.setBorderPainted(false);
@@ -215,14 +215,11 @@ public class pnUIBottom extends JPanel {
 		pnMain.add(amoutnTF);
 		pnMain.add(pinLB);
 		pnMain.add(pinTF);
-		pnMain.add(retypePinLB);
-		pnMain.add(retypePinTF);
 		pnMain.add(transferBT);
-		JFrame popup = showPopupJFrame("Transfer", 400, 480, pnMain);
+		JFrame popup = showPopupJFrame("Transfer", 400, 400, pnMain);
 		openPopups.add(popup);
 		transferBT.addActionListener(e -> {
 			String pin = pinTF.getText().trim();
-			Double amount = Double.parseDouble(amoutnTF.getText().trim().isEmpty() ? "0" : amoutnTF.getText().trim());
 			String transferUsername = Main.getMainViewInstance().user.getUsername();
 			String receiverUsername = receiverUsernameTF.getText().trim();
 			User transferUser = null, receiverUser = null;
@@ -241,11 +238,9 @@ public class pnUIBottom extends JPanel {
 			if (!validator.validateBlankLength(receiverUsernameTF)) toast.showMsg("Warning", "Receive username can't be blank and min 6 characters", "warning");
 			else if (receiverUsername.equals(transferUsername)) toast.showMsg("Warning", "Can't be transfer for youself", "warning");
 			else if (!validator.validateBlank(amoutnTF) || !validator.validateBalance(amoutnTF)) toast.showMsg("Warning", "Amount can't be blank and must be number", "warning");
-			else if (amount == 0) toast.showMsg("Error", "Amount can't be 0", "error");
-			else if (amount > transferUser.getBalance()) toast.showMsg("Error", "Insufficient balance", "error");
+			else if (Double.parseDouble(amoutnTF.getText().trim()) == 0) toast.showMsg("Error", "Amount can't be 0", "error");
+			else if (Double.parseDouble(amoutnTF.getText().trim()) > transferUser.getBalance()) toast.showMsg("Error", "Insufficient balance", "error");
 			else if (!validator.validatePin(pinTF)) toast.showMsg("Warning", "PIN can't be blank and must be 6 number", "warning");
-			else if (!validator.validatePin(retypePinTF)) toast.showMsg("Warning", "PIN retype can't be blank and must be 6 number", "warning");
-			else if (!pin.equals(retypePinTF.getText().trim())) toast.showMsg("Warning", "PIN not match", "warning");
 			else if (!pin.equals(Main.getMainViewInstance().user.getPin())) toast.showMsg("Error", "Wrong PIN", "error");
 			else if (receiverUser == null) toast.showMsg("Error", "Receiver user not found", "error");
 			else {
@@ -260,15 +255,11 @@ public class pnUIBottom extends JPanel {
 									currentTransferBalance + "|" +
 									receiverUsername + "|" +
 									currentReceiverBalance + "|" +
-									amount;
+									Double.parseDouble(amoutnTF.getText().trim());
 					outStr.writeUTF(request);
 					outStr.flush();
-					int rowTransferUpdate = inObj.readInt();
-					int rowReceiverUpdate = inObj.readInt();
-					int rowTransferThUpdate = inObj.readInt();
-					int rowReceiverThUpdate = inObj.readInt();
-					boolean isError = rowTransferUpdate != 1 || rowReceiverUpdate != 1 || rowTransferThUpdate != 1 || rowReceiverThUpdate != 1;
-					if (isError) toast.showMsg("Error", "Can't transfer, have an error", "error");
+					int status = inObj.readInt();
+					if (status == -1) toast.showMsg("Error", "Can't transfer, have an error", "error");
 					popup.dispose();
 				} catch (Exception ex) {
 					ex.printStackTrace();
@@ -420,12 +411,12 @@ public class pnUIBottom extends JPanel {
 		JLabel oldPinLB = new JLabel("Old PIN"),
 			   newPinLB = new JLabel("New PIN"),
 			   retypeNewPinLB = new JLabel("Retype new PIN");
-		JTextField oldPinTF = new JTextField(),
-				   newPinTF = new JTextField(),
-				   retypeNewPinTF = new JTextField();
+		JPasswordField oldPinTF = new JPasswordField(),
+				   	   newPinTF = new JPasswordField(),
+				   	   retypeNewPinTF = new JPasswordField();
 		JButton changePinBT = new JButton("CHANGE PIN");
-		retypeNewPinTF.setMargin(new Insets(4, 8, 4, 8));
-		retypeNewPinTF.setMargin(new Insets(4, 8, 4, 8));
+		oldPinTF.setMargin(new Insets(4, 8, 4, 8));
+		newPinTF.setMargin(new Insets(4, 8, 4, 8));
 		retypeNewPinTF.setMargin(new Insets(4, 8, 4, 8));
 		changePinBT.setBackground(Color.decode(variables.primaryColorLight));
 		changePinBT.setOpaque(true);

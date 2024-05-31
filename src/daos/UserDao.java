@@ -90,4 +90,28 @@ public class UserDao {
 		}
 		return result;
 	}
+	
+	public int update(User user, String type, Connection con) {
+		int result = 0;
+		String sql = "";
+		if (type.equals("recharge") || type.equals("transfer") || type.equals("receive")) {
+			sql = "UPDATE users SET balance=? WHERE username=?";
+		} else if (type.equals("changepin")) {
+			sql = "UPDATE users SET pin=? WHERE username=?";
+		}
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			if (type.equals("recharge") || type.equals("transfer") || type.equals("receive")) {
+				pst.setDouble(1, user.getBalance());
+			} else if (type.equals("changepin")) {
+				pst.setString(1, user.getPin());
+			}
+			pst.setString(2, user.getUsername());
+			result = pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("[Query] -> :\n- " + sql + "\n- " + result + " row updated.");
+		return result;
+	}
 }

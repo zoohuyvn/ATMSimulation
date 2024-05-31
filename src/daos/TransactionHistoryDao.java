@@ -39,6 +39,25 @@ public class TransactionHistoryDao {
 		return result;
 	}
 	
+	public int create(TransactionHistory th, Connection con) {
+		int result = 0;
+		String sql = "INSERT INTO transactionhistories (id, username, type, `from`, amount, `time`) VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, th.getId());
+			pst.setString(2, th.getUsername());
+			pst.setString(3, th.getType());
+			pst.setString(4, th.getFrom());
+			pst.setDouble(5, th.getAmount());
+			pst.setString(6, th.getTime());
+			result = pst.executeUpdate();
+			System.out.println("[Query] ->:\n- " + sql + "\n- " + result + " row updated.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public TransactionHistory read(TransactionHistory th) {
 		TransactionHistory result = null;
 		try {
