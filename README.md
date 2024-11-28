@@ -57,7 +57,7 @@ You can open the project with an IDE that supports Java like IntelliJ IDEA, Ecli
 Open Eclipse, click `File/Import` choose type wizard `Projects from Folder or Archive` and browse to directory you cloned.
 
 ## 👉 Usage
-Access to project folder, then open file `Main.java` in path `ATMSimulation/src/ATMSimulation`<br>
+Access to project folder, then open file `Main.java` in path `ATMSimulation/src/ATMSimulation`.<br>
 Right click and `Run As/1 Java Application` or use shortcut `Alt + Shift + X`.
 
 ## ✒️ Diagrams
