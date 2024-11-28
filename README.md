@@ -1,5 +1,5 @@
 # ATM Simulation
-Final project in Java and Base project I for ATM simulation.
+Final project in Java and Base project I for ATM simulation of Semester II at VKU.
 
 ## 📍 Features
 - Multithreading (transaction management)
@@ -76,4 +76,4 @@ I'm look forward to receiving feedback as I develop further. Thanks for viewing 
 
 ## ✨ Support
 Give a ⭐ if this project helped you!<br><br>
-<a href='https://www.buymeacoffee.com/zoohuy' target='_blank'><img style='height: 34px' src='https://i.imgur.com/Y2Ta2iz.png'/></a>
+<a href='https://www.buymeacoffee.com/zoohuyvn' target='_blank'><img style='height: 34px' src='https://i.imgur.com/Y2Ta2iz.png'/></a>
