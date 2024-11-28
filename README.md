@@ -1,5 +1,5 @@
 # ATM Simulation
-Final project in Java and Base project I for ATM simulation of Semester II at VKU.
+Final project with Java and Base project I for ATM simulation of Semester II at VKU.
 
 ## 📍 Features
 - Multithreading (transaction management)
