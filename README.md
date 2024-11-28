@@ -36,7 +36,7 @@ Final project in Java and Base project I for ATM simulation of Semester II at VK
 ## ⚙️ Installation
 ### 1. Clone repository
 ```bash
-git clone https://github.com/iamzoohuy/ATMSimulation.git
+git clone https://github.com/zoohuyvn/ATMSimulation.git
 ```
 ### 2. Install environment
 - JDK (version 8 and above): Java SE Development Kit 20.0.2
